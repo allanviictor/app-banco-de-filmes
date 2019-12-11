@@ -58,6 +58,7 @@ class CardMain extends Component {
                                 <p className="description-content">
                                     {movie.overview}
                                 </p>
+                                allan
                                 <WhiteButton  genreId={movie.genre_ids} />
                             </div>
                         </div>
