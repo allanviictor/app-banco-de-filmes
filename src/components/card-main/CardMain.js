@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import './cardMain.css'
-import axios from 'axios';
+import { baseUrl, apikey } from '../../services/api'
 import WhiteButton from '../white-button/WhiteButton'
-
-
-const apikey = '6c537dd80af2657e68417972d6a4e357';
-
-const apiUrl = axios.create({
-    baseURL: `https://api.themoviedb.org/3/`,
-})
 
 
 class CardMain extends Component {
@@ -20,17 +13,22 @@ class CardMain extends Component {
         }
     }
 
-    componentDidMount = async () => {
-       const answerApi = await apiUrl.get(`movie/popular?api_key=${apikey}&language=pt-BR`)
-       const { ...recentMovies } = answerApi.data
-
-        const getIdFilms = recentMovies.results.map((item) => item.id)
-        this.setState({
-            films: recentMovies.results,
-            idFilms: getIdFilms
+    componentDidMount(){
+        fetch(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
+        .then(resp => { return resp.json() })
+        .then((resp)=>{
+            const { ...recentMovies } = resp
+            const getIdFilms = recentMovies.results.map((item) => item.id)
+            console.log(recentMovies)
+            this.setState({
+                films: recentMovies.results,
+                idFilms: getIdFilms
+            })
         })
-        /* console.log(answerApi) */
+    
     }
+
+    
 
     render() {
 
@@ -58,7 +56,6 @@ class CardMain extends Component {
                                 <p className="description-content">
                                     {movie.overview}
                                 </p>
-                                allan
                                 <WhiteButton  genreId={movie.genre_ids} />
                             </div>
                         </div>
