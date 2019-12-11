@@ -1,0 +1,8 @@
+.top-bar{
+    background: #116193;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

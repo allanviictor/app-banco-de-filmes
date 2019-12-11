@@ -1,0 +1,50 @@
+body, html {
+    margin: 0px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #4d4d4d;
+    font-size: 16px;
+}
+
+.title{
+    font-family: 'Abel', sans-serif;
+    font-size: 40px;
+    color: #03ced4;
+    font-weight: 400;
+}
+
+
+/*==== grid ====*/
+
+
+.wrapper {
+    margin: 0px auto 0px auto;
+    padding-right: 25px;
+    width: 100%;
+    padding-left: 25px;
+}
+  
+
+@media (max-width: 767px) {
+    .wrapper {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .wrapper {
+        max-width: 1140px;
+    }
+}
+
+/* @media (min-width: 576px) {
+    .my-custom-container {
+      max-width: 540px;
+    }
+} */
+
+/* @media (min-width: 992px) {
+    .my-custom-container {
+        max-width: 960px;
+    }
+} */
