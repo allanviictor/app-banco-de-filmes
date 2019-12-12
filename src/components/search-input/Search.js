@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import './search.css'
 
 class Search extends Component {
-    render() {
+    constructor(props){
+        super(props);
+        this.state = {
+            searchTerm: ''
+        }
+     
+    }
+
+    render(props) {
         return (
-            <form>
-                <input type="search" className="input-search" placeholder="Busque um filme por nome, ano ou gênero..."/>
+            <form  method="GET" onSubmit={this.props.propsubmit}>
+                <input type="text" onKeyUp={this.props.propkeyup} className="input-search" placeholder="Busque um filme por nome, ano ou gênero..."/>
             </form>
         );
     }

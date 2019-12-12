@@ -1,4 +1,5 @@
 import React from 'react';
+//import { baseUrl, apikey } from '../../services/api'
 import "./whiteButton.css";
 
 const generes = [
@@ -22,6 +23,7 @@ const generes = [
     {id: 10752, name: "Guerra"},
     {id: 37, name: "Faroeste"},
 ]
+
 
 
 const WhiteButton = props => {

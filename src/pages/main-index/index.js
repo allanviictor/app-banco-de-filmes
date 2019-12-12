@@ -1,71 +1,59 @@
 import React, { Component } from 'react';
-/* import axios from 'axios'; */
-
-
-/*==== import Components ====*/
 import TopBar from '../../components/top-bar/TopBar'
 import Search from '../../components/search-input/Search'
 import CardMain from '../../components/card-main/CardMain'
-
-
-/* const apikey = '6c537dd80af2657e68417972d6a4e357';
-
-const apiUrl = axios.create({
-    baseURL: `https://api.themoviedb.org/3/movie`,
-}) */
+import { baseUrl, apikey } from '../../services/api'
 
 
 export default class mainIndex extends Component {
-    /* constructor(){
+    constructor(){
         super();
-
         this.state = {
             films: [],
+            idFilms: []
         }
     }
 
     componentDidMount(){
-        this.loadApi();
+        fetch(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
+        .then(resp => { return resp.json() })
+        .then(resp => {
+            const { ...recentMovies } = resp
+            const getIdFilms = recentMovies.results.map((item) => item.id)
+            this.setState({
+                films: recentMovies.results,
+                idFilms: getIdFilms
+            })
+        })
+    
     }
 
-    loadApi = async () => {
-        const answerApi = await apiUrl.get(`/popular?api_key=${apikey}&page=1`);
-        const { ...recentMovies } = answerApi.data;
+    handleKeyUp = event => {
         this.setState({
-            films: recentMovies.results
+            searchTerm: event.target.value
         })
-    }; */
+    }
 
-  
+    handleSubmit = event => {
+        event.preventDefault();
+        console.log(`value enviado: ${this.state.searchTerm}`)
+        fetch(`${baseUrl}search/movie?api_key=${apikey}&language=pt-BR&include_adult=false&query=${this.state.searchTerm}`)
+        .then(respo => {
+           return respo.json()
+        })
+        .then(data =>{
+            console.log(data)
+        })
+    }
+
     render() {
-
-        /* const imgUrlDefault = 'http://image.tmdb.org/t/p/w342/';
-
-        const allmovie = this.state.films.map((movie, index) =>{
-            while(index <= 4){
-                return( 
-                    <div>
-                        <h2> {movie.title}</h2>  
-                        <img src={ `${imgUrlDefault}${movie.poster_path}` } />
-                    </div>
-                );
-            }
-        }) */
-
         return(
             <div>
-                {/* <div>
-                    <div class="container">
-                        {allmovie}
-                    </div>
-                </div> */}
-        
                 <TopBar />
                 <div className="wrapper">
-                    <Search />
-                    <CardMain/>
+                    <Search propsubmit={this.handleSubmit} propkeyup={this.handleKeyUp} />
+                    <CardMain films={this.state.films} films_id={this.state.idfilms}/>
                 </div>
-               
             </div>
         );
     }
