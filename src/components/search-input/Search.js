@@ -13,7 +13,7 @@ class Search extends Component {
     render(props) {
         return (
             <form  method="GET" onSubmit={this.props.propsubmit}>
-                <input type="text" onKeyUp={this.props.propkeyup} className="input-search" placeholder="Busque um filme por nome, ano ou gênero..."/>
+                <input type="text" onChange={this.props.proponchange} onKeyUp={this.props.propkeyup} className="input-search" placeholder="Busque um filme por nome, ano ou gênero..."/>
             </form>
         );
     }

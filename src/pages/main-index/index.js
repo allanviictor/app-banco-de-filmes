@@ -14,7 +14,7 @@ export default class mainIndex extends Component {
         }
     }
 
-    componentDidMount(){
+    search_base_films(){
         fetch(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
         .then(resp => { return resp.json() })
         .then(resp => {
@@ -25,10 +25,13 @@ export default class mainIndex extends Component {
                 idFilms: getIdFilms
             })
         })
-    
     }
 
-    handleKeyUp = event => {
+    componentDidMount(){
+        this.search_base_films()
+    }
+
+    handleChange = event => {
         this.setState({
             searchTerm: event.target.value
         })
@@ -42,8 +45,21 @@ export default class mainIndex extends Component {
            return respo.json()
         })
         .then(data =>{
-            console.log(data)
+            const { ...moviesSearch } = data
+            this.setState({
+                films: moviesSearch.results
+            })
+            console.log(moviesSearch)
         })
+    }
+
+    handleOnKeyUp = event => {
+        this.setState({
+            searchTerm: event.target.value
+        })
+        if(this.state.searchTerm == ''){
+            this.search_base_films()
+        }
     }
 
     render() {
@@ -51,7 +67,7 @@ export default class mainIndex extends Component {
             <div>
                 <TopBar />
                 <div className="wrapper">
-                    <Search propsubmit={this.handleSubmit} propkeyup={this.handleKeyUp} />
+                    <Search propsubmit={this.handleSubmit} proponchange={this.handleChange} propkeyup={this.handleOnKeyUp}/>
                     <CardMain films={this.state.films} films_id={this.state.idfilms}/>
                 </div>
             </div>

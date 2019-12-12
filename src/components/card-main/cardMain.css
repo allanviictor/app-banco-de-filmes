@@ -43,6 +43,7 @@
     background: #ebebeb;
     position: relative;
     z-index: 1;
+    width: 100%;
 }
 
 .blog-card .description .description-content{
