@@ -14,8 +14,8 @@ export default class mainIndex extends Component {
         }
     }
 
-    search_base_films(){
-        fetch(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
+    search_films = (url) =>{
+        fetch(url)
         .then(resp => { return resp.json() })
         .then(resp => {
             const { ...recentMovies } = resp
@@ -28,7 +28,7 @@ export default class mainIndex extends Component {
     }
 
     componentDidMount(){
-        this.search_base_films()
+        this.search_films(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
     }
 
     handleChange = event => {
@@ -39,18 +39,8 @@ export default class mainIndex extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        this.search_films(`${baseUrl}search/movie?api_key=${apikey}&language=pt-BR&include_adult=false&query=${this.state.searchTerm}`)
         console.log(`value enviado: ${this.state.searchTerm}`)
-        fetch(`${baseUrl}search/movie?api_key=${apikey}&language=pt-BR&include_adult=false&query=${this.state.searchTerm}`)
-        .then(respo => {
-           return respo.json()
-        })
-        .then(data =>{
-            const { ...moviesSearch } = data
-            this.setState({
-                films: moviesSearch.results
-            })
-            console.log(moviesSearch)
-        })
     }
 
     handleOnKeyUp = event => {
@@ -58,7 +48,7 @@ export default class mainIndex extends Component {
             searchTerm: event.target.value
         })
         if(this.state.searchTerm == ''){
-            this.search_base_films()
+            this.search_films(`${baseUrl}movie/popular?api_key=${apikey}&language=pt-BR`)
         }
     }
 
