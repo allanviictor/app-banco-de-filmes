@@ -10,3 +10,6 @@ Aqui estão listados os filmes com maior ranking e mais procurados no momento, c
 - Faça o clone do repositorio para seu computador
 - Dentro da pasta o projeto execute o comando **npm install** para baixar as dependencias do projeto e aguarda até finalizar
 - Por último execute o comando **npm start** para iniciar o servidor do react na porta 3000
+
+## Prints
+
