@@ -1,2 +1,2 @@
-# app-banco-de-filmes
-Aplicação feita com a api do themoviedb. Veja informações dos filmes mais populares e procure seu filme favorito por nome ou categoria. 
+# Banco de Filmes
+Aqui estão listados os filmes com maior ranking e mais procurados no momento, com base na API **The Movie Database (TMDb)**. Pesquise por seu filme favorito para saber mais informações sobre ele.
