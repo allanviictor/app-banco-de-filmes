@@ -12,4 +12,5 @@ Aqui estão listados os filmes com maior ranking e mais procurados no momento, c
 - Por último execute o comando **npm start** para iniciar o servidor do react na porta 3000
 
 ## Prints
+![GitHub](./print.png)
 
